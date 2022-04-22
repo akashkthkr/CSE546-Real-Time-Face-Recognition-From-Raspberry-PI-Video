@@ -13,7 +13,7 @@ Raspberry Pi is the most widely used IoT development platform. This project will
 ### High-level Architecture
 The Raspberry Pi records the videos using its attached camera. The cloud performs face recognition on the collected videos, looks up the recognized students in the database, and returns the relevant academic information of each recognized student back to the user. 
 
-![alt text](https://github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video/blob/main/Description_Design.png?raw=true)
+![alt text](https://github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video/blob/main/README_images/Description_Design.png?raw=true)
 
 
 ### 1. Edge (using Raspberry Pi)
