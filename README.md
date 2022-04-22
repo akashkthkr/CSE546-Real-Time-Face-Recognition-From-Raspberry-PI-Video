@@ -104,7 +104,7 @@ Please use `pip install -e '.[dev]'` if you are a `zsh` user.
 ssh -i "Akash_key.pem" ec2-user@ec2-3-86-234-121.compute-1.amazonaws.com
 
 ### Resources Used in AWS as Naming:
-
+```python
 AWS_S3_INPUT_BUCKET_NAME = ""
 
 AWS_S3_OUTPUT_BUCKET_NAME = ""
@@ -118,6 +118,7 @@ REGION_NAME = "us-east-1"
 AWS_ACCESS_KEY_ID = "AAAAAAAAAAAAAAA"
 
 AWS_ACCESS_KEY_SECRET = "BBBBBBBBBBBBBBBB"
+```
 
 ### We have also loaded the script at startup of the instance on AMI load:
 
