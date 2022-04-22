@@ -22,11 +22,11 @@ To evaluate the performance of your app, your program on the Pi should also repo
 Latency: X.XX seconds.
 
 Suggestions:
-### 1) Install the OS on Raspberry Pi. Refer to: https://docs.google.com/document/d/1MaHuP5qyA29oy2vhYwPEdCB6vR5qJtOu5nQp2tVIJaM/edit?usp=sharing
+#### 1) Install the OS on Raspberry Pi. Refer to: https://docs.google.com/document/d/1MaHuP5qyA29oy2vhYwPEdCB6vR5qJtOu5nQp2tVIJaM/edit?usp=sharing
 
-### 2) Use the camera on Raspberry Pi. Refer to: https://docs.google.com/document/d/1PFTHat0wToYxTvkffI29EnksyHyGUPMKTP3-HjNd45Q/edit?usp=sharing
+#### 2) Use the camera on Raspberry Pi. Refer to: https://docs.google.com/document/d/1PFTHat0wToYxTvkffI29EnksyHyGUPMKTP3-HjNd45Q/edit?usp=sharing
 	
-### 3) To measure latency, you can measure the time between when a face is recorded by the camera and when the student’s academic information is returned to the Pi. You can use the “time” package.
+#### 3) To measure latency, you can measure the time between when a face is recorded by the camera and when the student’s academic information is returned to the Pi. You can use the “time” package.
 
 Example python snippet:
 **Import time**
@@ -39,6 +39,17 @@ Example python snippet:
 **print("Latency: {:.2f} seconds.".format(latency))**
 
 
+### 2. Cloud (using AWS) 
+The videos sent from the Pi should be stored in S3.
+
+Your Lambda functions should perform the following tasks:
+#### 1) Extract frames from the video (Alternatively, you can extract the frames using your program on the Pi).
+#### 2) Recognize faces from the frames. To simplify your program, you can assume there is only one face in the videos (although the faces can change), and your application does recognition every 0.5 second.
+#### 3) Fetch each reorganized student’s academic information, including name, major, and year (e.g., Sparky, Physics, Junior) from the database.
+#### 4) Send the recognized student’s academic information to the edge.
+
+
+**Implement different functionalities in different Lambda functions.**
 
 
 
