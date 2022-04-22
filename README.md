@@ -96,6 +96,40 @@ python3 -m venv venv
 . venv/bin/activate
 Please use `pip install -e '.[dev]'` if you are a `zsh` user.
 
+## AWS Details
+
+### SSH Details Dummy
+
+ssh -i "Akash_key.pem" ec2-user@ec2-3-86-234-121.compute-1.amazonaws.com
+
+### Resources Used in AWS as Naming:
+
+AWS_S3_INPUT_BUCKET_NAME = ""
+
+AWS_S3_OUTPUT_BUCKET_NAME = ""
+
+AWS_LAMBDA_NAME = ""
+
+AWS_DYNAMO_DB_NAME = ""
+
+REGION_NAME = "us-east-1"
+
+AWS_ACCESS_KEY_ID = "AAAAAAAAAAAAAAA"
+
+AWS_ACCESS_KEY_SECRET = "BBBBBBBBBBBBBBBB"
+
+### We have also loaded the script at startup of the instance on AMI load:
+
+```bash
+sudo yum update -y
+sudo yum install git -y
+echo export AWS_ACCESS_KEY_ID="AAAAAAAAAAAAAAA" >> /etc/profile
+echo export AWS_SECRET_ACCESS_KEY="BBBBBBBBBBBBBBBB"" >> /etc/profile
+git clone https://token@github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video
+.git
+```
+
+
 
 
 ## Acknowledgements
