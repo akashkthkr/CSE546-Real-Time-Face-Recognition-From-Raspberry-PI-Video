@@ -13,10 +13,11 @@ Raspberry Pi is the most widely used IoT development platform. This project will
 ### High-level Architecture
 The Raspberry Pi records the videos using its attached camera. The cloud performs face recognition on the collected videos, looks up the recognized students in the database, and returns the relevant academic information of each recognized student back to the user. 
 
+![alt text](https://github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video/blob/main/Description_Design.png?raw=true)
+
+
 ### 1. Edge (using Raspberry Pi)
 Your program on the Pi should continuously record videos and send them to the cloud. The program should receive the output from the cloud for each recognized person in the videos and output the person’s name and academic information in the following format: 
-
-The #NUMBER person recognized: NAME, MAJOR, YEAR.
 
 To evaluate the performance of your app, your program on the Pi should also report the response time (see Testing) of every request in the following format: 
 
