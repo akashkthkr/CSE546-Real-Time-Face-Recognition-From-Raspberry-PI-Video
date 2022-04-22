@@ -65,6 +65,32 @@ Test your code thoroughly. During testing, your team members can show your faces
 #### 8) The end-to-end latency (the time between when a face is recorded by the camera and when the student’s academic information is returned to the Pi) should be reasonably short.
 
 
+## Building from source
+
+To build `CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video` from source, pip install using:
+
+```bash
+git clone https://github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video.git
+pip install --upgrade .
+```
+
+If you also want to download the dependencies needed to run optional tutorials, please use `pip install --upgrade .[dev]` or `pip install --upgrade '.[dev]'` (for `zsh` users).
+
+
+#### Installation for Devs
+
+If you intend to contribute to this project, please install `CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video` in editable mode as follows:
+```bash
+git clone https://github.com/akashkthkr/CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video.git
+pip install -e .[dev]
+```
+
+python3 -m venv venv
+. venv/bin/activate
+Please use `pip install -e '.[dev]'` if you are a `zsh` user.
+
+
+
 ## Acknowledgements
 ### Team Members Group 11:
 [Akash Kant](https://github.com/akashkthkr), (akant1)
