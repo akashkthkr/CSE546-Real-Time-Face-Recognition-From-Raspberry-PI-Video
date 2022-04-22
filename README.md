@@ -12,6 +12,6 @@ Raspberry Pi is the most widely used IoT development platform. This project will
 ### Team Members Group 11:
 [Akash Kant](https://github.com/akashkthkr), (akant1)
 
-[Ayush Kalani](https://github.com/ayushkalani),(akalani2)
+[Ayush Kalani](https://github.com/ayushkalani), (akalani2)
 
-[Nakul Vaidya](https://github.com/NakulVaidya),(nvaidya7)
+[Nakul Vaidya](https://github.com/NakulVaidya), (nvaidya7)
