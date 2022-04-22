@@ -52,6 +52,18 @@ Your Lambda functions should perform the following tasks:
 **Implement different functionalities in different Lambda functions.**
 
 
+## Testing
+Test your code thoroughly. During testing, your team members can show your faces on the camera alternatively, and each of you should appear on the camera for at least 3 seconds.
+
+#### 1) The videos are sent from the Pi to the cloud continuously;
+#### 2) All the received videos in cloud are properly saved in S3;
+#### 3) All the faces in the sent videos are recognized (every 0.5 second);
+#### 4) The face recognition results are correct. More than 60% of the face recognition results are correct. Although some results are incorrect, they should be among your team members;
+#### 5) The Lambda functions are autoscaled correctly;
+#### 6) The student academic information is stored properly in DynamoDB;
+#### 7) All the recognized students’ academic information is correctly returned to the Pi;
+#### 8) The end-to-end latency (the time between when a face is recorded by the camera and when the student’s academic information is returned to the Pi) should be reasonably short.
+
 
 ## Acknowledgements
 ### Team Members Group 11:
