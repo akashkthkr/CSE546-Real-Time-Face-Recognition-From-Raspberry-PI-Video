@@ -64,6 +64,13 @@ Test your code thoroughly. During testing, your team members can show your faces
 #### 7) All the recognized students’ academic information is correctly returned to the Pi;
 #### 8) The end-to-end latency (the time between when a face is recorded by the camera and when the student’s academic information is returned to the Pi) should be reasonably short.
 
+## Installation
+
+Our team's contribution is supposed to go into the `CSE546-Real-Time-Face-Recognition-From-Raspberry-PI-Video/` folder. So move there
+```console
+cd .
+```
+
 
 ## Building from source
 
