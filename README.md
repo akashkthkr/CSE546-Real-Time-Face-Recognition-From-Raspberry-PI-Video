@@ -1,4 +1,5 @@
 # Real Time Face Recognition Service From Raspberry PI Captured Video
+[![License](https://img.shields.io/github/license/qcenergy/qudra.svg?style=popout-square)](https://opensource.org/licenses/Apache-2.0)
 
 ## Motivation
 
