@@ -1,6 +1,6 @@
 import requests
-API_HEADER_ACCESS_KEY = "0K3vXKxiE53WVGEtDLGmQ5X3TC1cS7c19CCofaC8"
-URL = "https://z6itiyatih.execute-api.us-east-1.amazonaws.com/production/test1"
+API_HEADER_ACCESS_KEY = "iqKbBR9rQq52psTrFQkix2bnJQWqwPmk4OMQ1GSr"
+URL = "https://z6itiyatih.execute-api.us-east-1.amazonaws.com/production/recognize-face"
 
 
 def post_video_to_aws_api_gateway():
