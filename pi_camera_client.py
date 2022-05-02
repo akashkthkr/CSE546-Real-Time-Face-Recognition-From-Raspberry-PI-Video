@@ -7,6 +7,7 @@ import os
 import requests
 import constants
 import logging
+from PIL import Image
 
 # API_HEADER_ACCESS_KEY = "0K3vXKxiE53WVGEtDLGmQ5X3TC1cS7c19CCofaC8"
 # URL = "https://z6itiyatih.execute-api.us-east-1.amazonaws.com/production/test1"
@@ -27,7 +28,7 @@ def post_video_to_s3(video_name):
 def send_frame_to_lambda(video_name):
     path = "/tmp/"
     video_file_path = "./"
-    os.system("ffmpeg -i " + str(video_file_path) + " -r 1 " + str(path) + video_name)
+    os.system("ffmpeg -i " + str(video_file_path) + video_name + " -r 1 " + str(path) + "image-%3d.jpeg")
 
 
 def capture_video():
@@ -39,9 +40,20 @@ def capture_video():
 
     for i in range(2):
         video_name = "video" + str(i) + ".h264"
+        image_name = "image" + str(i)
+
+        #record video and capture image at 0.3s
         camera.start_recording(video_name)
-        time.sleep(0.5)
+        camera.wait_recording(0.3)
+        camera.capture(image_name + '.data', 'rgb', use_video_port=True)
+        camera.wait_recording(0.2)
         camera.stop_recording()
+
+        #convert to png
+        rawData = open(image_name + '.data', 'rb').read()
+        imgSize = (160, 160)  # the image size
+        img = Image.frombytes('RGB', imgSize, rawData)
+        img.save(image_name + '.png')
 
         # creating processes
         p1 = multiprocessing.Process(target=post_video_to_s3, args=(video_name, ))
