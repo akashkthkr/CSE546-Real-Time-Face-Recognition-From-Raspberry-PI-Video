@@ -8,6 +8,9 @@ import requests
 import constants
 import logging
 from PIL import Image
+import base64
+import json
+import requests
 
 # API_HEADER_ACCESS_KEY = "0K3vXKxiE53WVGEtDLGmQ5X3TC1cS7c19CCofaC8"
 # URL = "https://z6itiyatih.execute-api.us-east-1.amazonaws.com/production/test1"
@@ -25,12 +28,31 @@ def post_video_to_s3(video_name):
     except ClientError as e:
         logging.error(e)
 
+api = 'http://localhost:8080/test'
+
 def send_frame_to_lambda(image_name):
     # convert to png
     rawData = open(image_name + '.data', 'rb').read()
     imgSize = (160, 160)  # the image size
     img = Image.frombytes('RGB', imgSize, rawData)
     img.save(image_name + '.png')
+
+    #send request to lambda
+    with open(image_name + '.png', "rb") as f:
+        im_bytes = f.read()
+    im_b64 = base64.b64encode(im_bytes).decode("utf8")
+
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+    payload = json.dumps({"image": im_b64, "name": image_name})
+    response = requests.post(api, data=payload, headers=headers)
+
+    #receive results from lambda
+    try:
+        data = response.json()
+        print(data)
+    except requests.exceptions.RequestException:
+        print(response.text)
 
 def capture_video():
     camera = PiCamera()
