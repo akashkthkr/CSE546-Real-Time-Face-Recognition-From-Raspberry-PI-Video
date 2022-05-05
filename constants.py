@@ -10,6 +10,8 @@ AWS_SQS_RESPONSE_QUEUE_NAME = "images-responses"
 AWS_ACCESS_KEY_ID = "AAAAAAAAAAAAAAA"
 AWS_ACCESS_KEY_SECRET = "BBBBBBBBBBBBBBBB"
 
+API_HEADER_ACCESS_KEY = "iqKbBR9rQq52psTrFQkix2bnJQWqwPmk4OMQ1GSr"
+
 ## SWAG
 STARTUP_BANNER =f"""
  +-+ +-+ +-+ +-+ +-+   +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+
