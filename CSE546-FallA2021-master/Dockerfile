@@ -1,24 +1,3 @@
-FROM amazon/aws-lambda-python:3.8
-
-# Copy function code
-
-
-# Install the function's dependencies using file requirements.txt
-# from your project folder.
-
-# COPY install_requirements.sh ${LAMBDA_TASK_ROOT}
-# RUN chmod +x ${LAMBDA_TASK_ROOT}/install_requirements.sh
-# COPY requirements.txt  .
-RUN pip3 install -r requirements.txt
-RUN pip3 install torch==1.10.2+cpu torchvision==0.11.3+cpu torchaudio==0.10.2+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html --target "${LAMBDA_TASK_ROOT}"
-#RUN pip3 install requests
-#RUN pip3 install numpy
-#RUN pip3 install pillow
-#RUN pip3 install requests
-
-# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
-
-
 # Define global args
 # ARG FUNCTION_DIR="/tmp/"
 # ARG FUNCTION_DIR=${LAMBDA_TASK_ROOT}
@@ -54,6 +33,13 @@ ARG FUNCTION_DIR
 ARG RUNTIME_VERSION
 # Create function directory
 RUN mkdir -p ${FUNCTION_DIR}
+COPY eval_face_recognition.py ${FUNCTION_DIR}
+COPY build_custom_model.py ${FUNCTION_DIR}
+COPY models ${FUNCTION_DIR}models
+COPY checkpoint ${FUNCTION_DIR}checkpoint
+COPY handler.py ${FUNCTION_DIR}
+
+RUN pip3 install torch==1.10.2+cpu torchvision==0.11.3+cpu torchaudio==0.10.2+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html --target "${FUNCTION_DIR}"
 
 # Optional – Install the function's dependencies
 # RUN python${RUNTIME_VERSION} -m pip install -r requirements.txt --target ${FUNCTION_DIR}
@@ -79,6 +65,8 @@ RUN apt-get install -y ffmpeg
 # Copy handler function
 COPY requirements.txt ${FUNCTION_DIR}
 RUN python${RUNTIME_VERSION} -m pip install -r requirements.txt --target ${FUNCTION_DIR}
+RUN pip3 install torch==1.10.2+cpu torchvision==0.11.3+cpu torchaudio==0.10.2+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html --target "${FUNCTION_DIR}"
+
 COPY entry.sh /
 
 # Copy function code
