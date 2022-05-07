@@ -5,6 +5,7 @@ from PIL import Image
 from io import BytesIO
 from subprocess import check_output
 import time
+import re
 from subprocess import check_output
 
 BUCKET_NAME = "face-recognition-videos"
@@ -40,8 +41,23 @@ def face_recognition_handler(event, context):
     recognised_face = check_output(
         ["python3", "-W ignore", "./eval_face_recognition.py", "--img_path", img_file_name]).strip().decode('utf-8')
     print("The output for this request is: " + str(recognised_face))
-    response = {
-        'statusCode': 200,
-        'body': recognised_face
+    output_received = re.search(r'\(([^)]+)\)[^)]*\Z', recognised_face).group(1)
+    object_key = output_received.rsplit(' ', 1)[1]
+    print(object_key)
+
+    dbclient = boto3.client(
+        'dynamodb',
+        region_name='us-east-1'
+    )
+    db_data = dbclient.get_item(
+        TableName="group11_students_table",
+        Key={
+            'name': {'S': object_key}
+        }
+    )
+    db_result = {
+        "name": f"{db_data['Item']['name']['S']}",
+        "major": f"{db_data['Item']['major']['S']}",
+        "year": f"{db_data['Item']['year']['S']}"
     }
-    return response
+    return db_result
