@@ -1,15 +1,11 @@
 import base64
 import time
 import requests
-import json
-import multiprocessing
 import subprocess
 import boto3
 from botocore.exceptions import ClientError
-import os
 import logging
 import json
-import asyncio
 import threading
 from constants import AWS_S3_BUCKET_NAME, URL, REGION_NAME, AWS_ACCESS_KEY_SECRET, AWS_ACCESS_KEY_ID, API_HEADER_ACCESS_KEY
 

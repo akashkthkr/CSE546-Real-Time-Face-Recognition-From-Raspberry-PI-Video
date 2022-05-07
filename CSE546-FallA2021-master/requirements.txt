@@ -2,4 +2,3 @@ boto3
 numpy
 pillow
 requests
-numpy
