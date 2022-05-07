@@ -8,6 +8,7 @@ import subprocess
 import boto3
 from botocore.exceptions import ClientError
 import os
+import logging
 import json
 import aiohttp
 import asyncio
@@ -19,21 +20,6 @@ s3_client = boto3.client('s3',
                         aws_secret_access_key=AWS_ACCESS_KEY_SECRET)
 
 
-
-def send_images_to_lambda():
-    start_time = time.time()
-    image_file_name = 'test_img/ak_30.png'
-    img_data = open(image_file_name, 'rb').read()
-    data = base64.b64encode(img_data)
-    img_as_str = str(data, "utf-8")
-    response = (requests.post(URL, data=img_as_str, headers={
-        "Content-Type": "image/png; charset=UTF-8", "X-API-Key": API_HEADER_ACCESS_KEY}))
-    latency = time.time() - start_time
-    db_data = json.loads(response.text)
-    output = f'The 1 person recognized: {db_data["name"]}, {db_data["major"]}, {db_data["year"]}'
-    print(output)
-    print("Latency: {:.2f} seconds.".format(latency))
-
 def recognize(data, start_time, i):
     res = requests.post(URL, json=data)
     latency = time.time() - start_time
@@ -42,6 +28,11 @@ def recognize(data, start_time, i):
     print(output)
     print("Latency: {:.2f} seconds.".format(latency))
 
+def post_video_to_s3(vid_name):
+    try:
+        response = s3_client.upload_file(vid_name, AWS_S3_BUCKET_NAME, vid_name)
+    except ClientError as e:
+        logging.error(e)
 
 def sending_frames_and_videos_to_lambdas():
     lambda_threads = list()
@@ -65,7 +56,7 @@ def sending_frames_and_videos_to_lambdas():
         lambda_threads.append(aws_lambda_thread)
         aws_lambda_thread.start()
 
-        aws_s3_thread = threading.Thread(target=AWS_S3_BUCKET_NAME, args=(video_file_from_pi,))
+        aws_s3_thread = threading.Thread(target=post_video_to_s3, args=(video_file_from_pi,))
         s3_threads.append(aws_s3_thread)
         aws_s3_thread.start()
 
