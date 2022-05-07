@@ -60,4 +60,5 @@ def face_recognition_handler(event, context):
         "major": f"{db_data['Item']['major']['S']}",
         "year": f"{db_data['Item']['year']['S']}"
     }
+    print(db_result)
     return db_result
