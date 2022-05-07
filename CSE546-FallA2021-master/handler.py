@@ -1,19 +1,13 @@
 import boto3
 import base64
-import subprocess
 from PIL import Image
 from io import BytesIO
-from subprocess import check_output
-import time
-import re
 import json
-from subprocess import check_output
 from eval_face_recognition import face_recognition
-from constants import AWS_DYNAMO_DB_NAME, REGION_NAME
 
 dbclient = boto3.client(
     'dynamodb',
-    region_name=REGION_NAME
+    region_name="us-east-1"
 )
 
 
@@ -27,7 +21,7 @@ def face_recognition_handler(event, context):
     recognised_face = face_recognition(pillow_image)
     print(recognised_face)
     db_data = dbclient.get_item(
-        TableName=AWS_DYNAMO_DB_NAME,
+        TableName="group11_students_table",
         Key={
             'name': {'S': recognised_face}
         }
