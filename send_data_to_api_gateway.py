@@ -7,8 +7,6 @@ import json
 from constants import API_HEADER_ACCESS_KEY, URL
 
 
-
-
 def send_images_to_lambda():
     start_time = time.time()
     image_file_name = 'test_img/ak_30.png'
