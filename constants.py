@@ -3,11 +3,11 @@ SECURITY_GROUP_ID = ["sg-0bb98ead470e1d287"]
 INSTANCE_TYPE = 't2.micro'
 AWS_SQS_REQUEST_QUEUE_NAME = "images-requests"
 AWS_SQS_RESPONSE_QUEUE_NAME = "images-responses"
-AWS_ACCESS_KEY_ID = "AAAAAAAAAAAAAAA"
-AWS_ACCESS_KEY_SECRET = "BBBBBBBBBBBBBBBB"
+AWS_ACCESS_KEY_ID = "AKIARS5GD4KSTLHZSW4E"
+AWS_ACCESS_KEY_SECRET = "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"
 
 API_HEADER_ACCESS_KEY = "iqKbBR9rQq52psTrFQkix2bnJQWqwPmk4OMQ1GSr"
-URL = "https://wu9xll4did.execute-api.us-east-1.amazonaws.com/default/x86-face-recog"
+URL = "https://8zw7mer57j.execute-api.us-east-1.amazonaws.com/default/x86-face-recog"
 
 AWS_S3_BUCKET_NAME = "face-recognition-videos"
 AWS_S3_FOLDER_NAME = "videos"
