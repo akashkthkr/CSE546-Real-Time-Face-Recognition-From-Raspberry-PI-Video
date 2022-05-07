@@ -337,4 +337,4 @@ def get_torch_home():
             os.path.join(os.getenv('XDG_CACHE_HOME', '~/.cache'), 'torch')
         )
     )
-    return torch_home
+    return "/tmp/" + torch_home
