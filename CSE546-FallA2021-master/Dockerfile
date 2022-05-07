@@ -2,7 +2,7 @@
 # ARG FUNCTION_DIR="/tmp/"
 # ARG FUNCTION_DIR=${LAMBDA_TASK_ROOT}
 ARG FUNCTION_DIR="/home/app/"
-ARG RUNTIME_VERSION="3.8"
+ARG RUNTIME_VERSION="3.9"
 ARG DISTRO_VERSION="3.12"
 
 # Stage 1 - bundle base image + runtime
@@ -39,7 +39,7 @@ COPY models ${FUNCTION_DIR}models
 COPY checkpoint ${FUNCTION_DIR}checkpoint
 COPY handler.py ${FUNCTION_DIR}
 
-RUN pip3 install torch==1.10.2+cpu torchvision==0.11.3+cpu torchaudio==0.10.2+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html --target "${FUNCTION_DIR}"
+RUN pip3 install torch==1.10.2 torchvision==0.11.3 torchaudio==0.10.2 -f https://download.pytorch.org/whl/cpu/torch_stable.html --target "${FUNCTION_DIR}"
 
 # Optional – Install the function's dependencies
 # RUN python${RUNTIME_VERSION} -m pip install -r requirements.txt --target ${FUNCTION_DIR}
