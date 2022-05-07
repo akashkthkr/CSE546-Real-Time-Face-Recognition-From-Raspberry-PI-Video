@@ -8,29 +8,26 @@ import time
 import re
 from subprocess import check_output
 from eval_face_recognition import face_recognition
+from constants import AWS_DYNAMO_DB_NAME, REGION_NAME
 
-BUCKET_NAME = "face-recognition-videos"
-FOLDER_NAME = "videos"
 dbclient = boto3.client(
     'dynamodb',
-    region_name='us-east-1'
+    region_name=REGION_NAME
 )
 
 
 def face_recognition_handler(event, context):
     print("Came here")
     coded_image = event["body"]
+    print()
     bytes_data_img = bytes(coded_image, 'utf-8')
     decoded_b64_image = base64.decodebytes(bytes_data_img)
     pillow_image = Image.open(BytesIO(decoded_b64_image))
 
     recognised_face = face_recognition(pillow_image)
-    dbclient = boto3.client(
-        'dynamodb',
-        region_name='us-east-1'
-    )
+
     db_data = dbclient.get_item(
-        TableName="group11_students_table",
+        TableName=AWS_DYNAMO_DB_NAME,
         Key={
             'name': {'S': recognised_face}
         }
@@ -44,3 +41,4 @@ def face_recognition_handler(event, context):
         "year": year
     }
     return db_result
+
