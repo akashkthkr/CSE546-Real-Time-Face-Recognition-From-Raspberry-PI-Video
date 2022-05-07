@@ -68,7 +68,7 @@ def sending_frames_and_videos_to_lambdas():
 
 def send_images_to_lambda():
     start_time = time.time()
-    image_file_name = 'test_img/kal_6.png'
+    image_file_name = 'test_img/ak_7.png'
     img_data = open(image_file_name, 'rb').read()
     data = base64.b64encode(img_data).decode("utf-8")
     sent_data = {
@@ -76,10 +76,8 @@ def send_images_to_lambda():
     }
     response = (requests.post(URL, json=sent_data))
     latency = time.time() - start_time
-    print(response.json())
     db_data = json.loads(response.text)
     output = f'The 1 person recognized: {db_data["name"]}, {db_data["major"]}, {db_data["year"]}'
-    print(db_data)
     print(output)
     print("Latency: {:.2f} seconds.".format(latency))
 
